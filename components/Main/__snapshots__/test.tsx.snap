@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Main /> should render the component 1`] = `
+.c0 {
+  background-color: #f0f0f0;
+  color: white;
+  font-size: 20px;
+}
+
+<main
+  class="c0"
+>
+  <h1>
+    Vehicles
+  </h1>
+</main>
+`;
