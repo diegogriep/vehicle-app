@@ -6,8 +6,8 @@ import { useVehicles } from "@/hooks/use-vehicles";
 import VehicleItem from "../VehicleItem";
 
 const VehicleList = () => {
-  const { items, filteredItems } = useVehicles()
-  const showItem = filteredItems.length > 0 ? filteredItems : items
+  const { items } = useVehicles()
+  const showItem = items
   return (
     <S.Wrapper>
       {showItem.map((vehicle, index) =>

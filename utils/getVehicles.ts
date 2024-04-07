@@ -10,12 +10,35 @@ export type FilterByProps = {
 
 export type SortValues = 'make' | 'startingBid' | 'mileage' | 'auctionDateTime'
 
+const listItems = (
+  items: VehiclesProps,
+  pageActual: number,
+  limitItems: number
+): VehiclesProps => {
+  const result: VehiclesProps = []
+  const totalPage = Math.ceil(items.length / limitItems)
+  let count = (pageActual * limitItems) - limitItems
+  const delimiter = count + limitItems
+
+  if(pageActual <= totalPage) {
+    for(let i = count; i < delimiter; i++) {
+      if(items[i]) {
+        result.push(items[i])
+      }
+
+      count++
+    }
+  }
+
+  return result
+}
+
 const getVehicles = async (
   signal: AbortSignal,
   filterBy: FilterByProps,
   sortBy?: SortValues,
   limit = 10,
-  current = 0): Promise<VehiclesProps> => {
+  current = 1): Promise<VehiclesProps> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, { signal })
   let vehicles: VehiclesProps = await response.json()
 
@@ -43,11 +66,11 @@ const getVehicles = async (
     a[sortBy] - b[sortBy])
   }
 
-  const position = current + limit
-  // const total = vehicles.length
-  const result = vehicles.slice(current, position)
+  // const position = current + limit
+  const total = vehicles.length
+  const result = listItems(vehicles, current, limit)
 
-  return result
+  return { result, total }
 }
 
 export default getVehicles

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 import media from "styled-media-query"
 
 type WrapperProps = {
-  favourite?: boolean
+  favourite: boolean
 }
 
 export const Wrapper = styled.div<WrapperProps>`

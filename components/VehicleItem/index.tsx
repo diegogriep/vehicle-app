@@ -7,11 +7,11 @@ import Image from "next/image"
 
 const VehicleItem = (props: VehiclesItemProps) => {
   return (
-    <S.Wrapper favourite={props.favourite === true}>
+    <S.Wrapper favourite={props.favourite}>
       <Image
         alt={`A placeholder image of a car make ${props.make} model ${props.model}`}
         src={'/assets/images/car-placeholder.jpeg'}
-        width={260} height={280} />
+        width={260} height={280} priority />
 
         <S.Model>{props.make} {props.model} {props.engineSize} {props.year}</S.Model>
         <S.Details>{props.mileage} km {props.fuel}</S.Details>

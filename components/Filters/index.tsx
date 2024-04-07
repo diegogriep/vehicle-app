@@ -10,7 +10,7 @@ import Checkbox from "../Checkbox"
 
 const Filters = () => {
   const { makeItems } = useMakes()
-  const { filterBy, sortBy } = useVehicles()
+  const { filterBy, sortBy, limitAPI } = useVehicles()
 
   const [updateValues, setUpdateValues] = useState({
     make: '',
@@ -76,9 +76,12 @@ const Filters = () => {
       </div>
 
       <div>
-        Sort by <SelectField
+        <SelectField
+          label="Sort by"
+          labelFor="sortBy"
           name="model"
           items={sortItems}
+          initialValue={limitAPI}
           onInput={(v) => sortBy(v)}
         />
       </div>

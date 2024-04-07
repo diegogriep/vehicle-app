@@ -9,7 +9,7 @@ export type SelectOptionProps = {
 
 export type SelectFieldProps = {
   items: SelectOptionProps[]
-  initialValue?: string
+  initialValue?: string | number
   label?: string
   labelFor?: string
   placeholder?: string
@@ -38,7 +38,7 @@ const SelectField = ({
     <S.Wrapper>
       {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
       <S.SelectWrapper>
-        <S.Select onChange={onChange} {...props} value={value}>
+        <S.Select onChange={onChange} {...props} value={value} id={labelFor}>
           <option value="0">{placeholder ? placeholder : 'Select'}</option>
           {items.map((item) => (
             <option key={item.value} value={item.value}>
