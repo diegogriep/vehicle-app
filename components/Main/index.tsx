@@ -1,8 +1,10 @@
+import { PropsWithChildren } from 'react'
 import * as S from './style'
 
-const Main = () => (
+const Main = ({ children }: PropsWithChildren) => (
   <S.Wrapper>
-    <h1>Vehicles</h1>
+    <S.Title>Vehicles finder</S.Title>
+    {children}
   </S.Wrapper>
 )
 

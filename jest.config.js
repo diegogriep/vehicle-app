@@ -6,6 +6,7 @@ module.exports = {
     'components/**/*.ts(x)?',
     '!app/**',
     '!types/**',
+    '!utils/mockServer/**',
     '!lib/registry.tsx',
     '!styles/**'
   ],
