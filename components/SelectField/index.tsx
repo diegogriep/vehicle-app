@@ -39,7 +39,7 @@ const SelectField = ({
       {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
       <S.SelectWrapper>
         <S.Select onChange={onChange} {...props} value={value} id={labelFor}>
-          <option value="0">{placeholder ? placeholder : 'Select'}</option>
+          <option value="">{placeholder ? placeholder : 'Select'}</option>
           {items.map((item) => (
             <option key={item.value} value={item.value}>
               {item.label}

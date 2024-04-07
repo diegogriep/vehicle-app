@@ -7,10 +7,9 @@ import VehicleItem from "../VehicleItem";
 
 const VehicleList = () => {
   const { items } = useVehicles()
-  const showItem = items
   return (
     <S.Wrapper>
-      {showItem.map((vehicle, index) =>
+      {items.map((vehicle, index) =>
         <VehicleItem key={index} {...vehicle} />
       )}
     </S.Wrapper>
