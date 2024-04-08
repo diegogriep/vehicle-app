@@ -23,7 +23,7 @@ export const Input = styled.input`
 `
 
 export const Label = styled.label`
-  background-color: #f0f0f0;
+  background-color: transparent;
   border-radius: 0.4rem;
   color: #black;
   cursor: pointer;

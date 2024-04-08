@@ -1,12 +1,14 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from "react"
-import SelectField from "../SelectField"
-import { useMakes } from "@/hooks/use-makes"
-import { useVehicles } from "@/hooks/use-vehicles"
-import { useModels } from "@/hooks/use-models"
-import TextField from "../TextField"
-import Checkbox from "../Checkbox"
+import { FormEvent, useEffect, useState } from 'react'
+import SelectField from '../SelectField'
+import { useMakes } from '@/hooks/use-makes'
+import { useVehicles } from '@/hooks/use-vehicles'
+import { useModels } from '@/hooks/use-models'
+import TextField from '../TextField'
+import Checkbox from '../Checkbox'
+
+import * as S from './styles'
 
 const Filters = () => {
   const { makeItems } = useMakes()
@@ -20,7 +22,10 @@ const Filters = () => {
     favorite: null
   })
 
-  const handleInputEdit = (field: string, value: string | FormEvent | boolean) => {
+  const handleInputEdit = (
+    field: string,
+    value: string | FormEvent | boolean
+  ) => {
     setUpdateValues((s) => ({ ...s, [field]: value }))
   }
 
@@ -30,19 +35,16 @@ const Filters = () => {
     filterBy(updateValues)
   }, [filterBy, updateValues])
 
-  const sortItems = [{label: 'Make', value: 'make'}, {label: 'Starting Bid', value: 'startingBid'}, {label: 'Milage', value: 'mileage'}, {label: 'Auction Date', value: 'auctionDateTime'}]
+  const sortItems = [
+    { label: 'Make', value: 'make' },
+    { label: 'Starting Bid', value: 'startingBid' },
+    { label: 'Milage', value: 'mileage' },
+    { label: 'Auction Date', value: 'auctionDateTime' }
+  ]
 
   return (
-    <div>
-      Filters (<button onClick={() => setUpdateValues({
-    make: '',
-    model: '',
-    startBidRange: 0,
-    endBidRange: 10000000,
-    favorite: null
-  })}>clear filters</button>)
-
-      <div>
+    <S.Wrapper>
+      <S.Filters>
         <SelectField
           name="make"
           items={makeItems}
@@ -71,11 +73,28 @@ const Filters = () => {
           onInputChange={(v) => handleInputEdit('endBidRange', v)}
         />
 
-        <Checkbox label="Search by favorites" labelFor="favorite"
-          onCheck={(v) => handleInputEdit('favorite', v)} />
-      </div>
+        <Checkbox
+          label="Search on your favorites?"
+          labelFor="favorite"
+          onCheck={(v) => handleInputEdit('favorite', v)}
+        />
+      </S.Filters>
 
-      <div>
+      <S.SortBy>
+        <S.Button
+          onClick={() =>
+            setUpdateValues({
+              make: '',
+              model: '',
+              startBidRange: 0,
+              endBidRange: 10000000,
+              favorite: null
+            })
+          }
+        >
+          clear filters
+        </S.Button>
+
         <SelectField
           label="Sort by"
           labelFor="sortBy"
@@ -84,8 +103,8 @@ const Filters = () => {
           initialValue={limitAPI}
           onInput={(v) => sortBy(v)}
         />
-      </div>
-    </div>
+      </S.SortBy>
+    </S.Wrapper>
   )
 }
 

@@ -1,7 +1,8 @@
-import { PaginationProps } from "@/components/Pagination";
-import { useState } from "react";
-const ELLIPSIS_START = -10
-const ELLIPSIS_END = -20
+import { PaginationProps } from '@/components/Pagination'
+import { useState } from 'react'
+
+export const ELLIPSIS_START = -10
+export const ELLIPSIS_END = -20
 
 const listNumberPages = (page: number, totalPages: number) => {
   const current = Math.min(page, totalPages)
@@ -27,7 +28,15 @@ const listNumberPages = (page: number, totalPages: number) => {
     return [1, 2, ELLIPSIS_END, total - 2, total - 1, total]
   }
 
-  return [1, ELLIPSIS_START, current - 1, current, current + 1, ELLIPSIS_END, total]
+  return [
+    1,
+    ELLIPSIS_START,
+    current - 1,
+    current,
+    current + 1,
+    ELLIPSIS_END,
+    total
+  ]
 }
 
 export const usePagination = ({ total }: PaginationProps) => {
@@ -38,5 +47,3 @@ export const usePagination = ({ total }: PaginationProps) => {
 
   return { setPage, pages, setLimit, limit }
 }
-
-

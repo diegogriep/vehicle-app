@@ -17,6 +17,10 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%; // 1rem = 10px == 10/16px = 62.5%
   }
+
+  body {
+    font-size: 1.6rem;
+  }
 `
 
 export default GlobalStyles

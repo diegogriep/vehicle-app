@@ -1,9 +1,10 @@
 import { PropsWithChildren } from 'react'
 import * as S from './style'
+import { Header } from '../Header'
 
 const Main = ({ children }: PropsWithChildren) => (
   <S.Wrapper>
-    <S.Title>Vehicles finder</S.Title>
+    <Header />
     {children}
   </S.Wrapper>
 )
