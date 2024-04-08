@@ -31,12 +31,12 @@ export const List = styled.ul`
   }
 `
 type ListProps = {
-  current: boolean
+  $current?: boolean
 }
 
 export const ListItem = styled.li<ListProps>`
-  ${({ current }) => css`
-    background-color: ${current ? '#666' : '#f0f0f0'};
+  ${({ $current }) => css`
+    background-color: ${$current ? '#666' : '#f0f0f0'};
 
     a {
       color: #fff;

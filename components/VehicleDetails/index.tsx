@@ -9,6 +9,7 @@ import {
 } from '@/hooks/use-vehicle-details'
 import patchVehicle from '@/utils/patchVehicle'
 import countdown from '@/utils/countdown'
+import Link from 'next/link'
 
 const VehicleDetails = ({
   make,
@@ -19,14 +20,7 @@ const VehicleDetails = ({
   const [vehicleData] = useVehicleDetails({ make, model, year, mileage })
 
   const updateFavourite = async () => {
-    const updateVehicle = await patchVehicle(
-      !vehicleData.favourite,
-      make,
-      model,
-      year,
-      mileage
-    )
-    console.log(updateVehicle)
+    await patchVehicle(!vehicleData.favourite, make, model, year, mileage)
   }
 
   const counter = (datetime: string) => {
@@ -37,9 +31,16 @@ const VehicleDetails = ({
     vehicleData && (
       <S.Wrapper>
         {vehicleData.favourite && <S.Favourite>&#9829;</S.Favourite>}
-        <S.Button onClick={updateFavourite}>
-          &#9829; {vehicleData.favourite ? 'Unfavorite' : 'Favourite'} this car
-        </S.Button>
+        <S.Header>
+          <Link href={'/'} title="Back to home">
+            Back to home
+          </Link>
+
+          <S.Button onClick={updateFavourite}>
+            &#9829; {vehicleData.favourite ? 'Unfavorite' : 'Favourite'} this
+            car
+          </S.Button>
+        </S.Header>
 
         <S.Text>
           Auction begins in {counter(vehicleData.auctionDateTime)}

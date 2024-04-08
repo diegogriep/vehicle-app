@@ -10,6 +10,7 @@ export type SelectOptionProps = {
 export type SelectFieldProps = {
   items: SelectOptionProps[]
   initialValue?: string | number
+  updatedValue?: string | number
   label?: string
   labelFor?: string
   placeholder?: string
@@ -22,6 +23,7 @@ const SelectField = ({
   labelFor = '',
   initialValue = '',
   placeholder = '',
+  updatedValue = '',
   onInput,
   ...props
 }: SelectFieldProps) => {
@@ -38,7 +40,12 @@ const SelectField = ({
     <S.Wrapper>
       {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
       <S.SelectWrapper>
-        <S.Select onChange={onChange} {...props} value={value} id={labelFor}>
+        <S.Select
+          onChange={onChange}
+          {...props}
+          value={typeof updatedValue === 'object' ? '' : value}
+          id={labelFor}
+        >
           <option value="">{placeholder ? placeholder : 'Select'}</option>
           {items.map((item) => (
             <option key={item.value} value={item.value}>

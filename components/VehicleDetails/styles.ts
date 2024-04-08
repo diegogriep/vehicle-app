@@ -19,6 +19,17 @@ export const Wrapper = styled.article`
   }
 `
 
+export const Header = styled.header`
+  a {
+    color: blue;
+    font-size: 1.4rem;
+  }
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`
+
 export const Model = styled.h1`
   font-size: inherit;
   font-weight: bold;
@@ -51,7 +62,7 @@ export const Footer = styled.footer`
 export const Favourite = styled.span`
   color: red;
   font-size: 2rem;
-  left: 2rem;
+  right: 12rem;
   position: absolute;
   top: 1.7rem;
   animation: 1.5s ease 0s infinite beat;
@@ -67,6 +78,11 @@ export const Favourite = styled.span`
       transform: scale(0.92, 0.95);
     }
   }
+
+  ${media.greaterThan('medium')`
+    right: 15.3rem;
+    top: 1.7rem;
+  `}
 `
 
 export const Button = styled.button`
@@ -88,6 +104,9 @@ export const Button = styled.button`
 `
 
 export const Text = styled.p`
+  background-color: orange;
+  color: #fff;
+  margin: 2rem -2rem;
   padding: 1rem 0;
   text-align: center;
 `

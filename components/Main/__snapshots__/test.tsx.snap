@@ -2,16 +2,61 @@
 
 exports[`<Main /> should render the component 1`] = `
 .c0 {
-  background-color: #f0f0f0;
-  color: white;
-  font-size: 20px;
+  color: black;
+  padding: 2rem 1rem;
+  max-width: 122.4rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.c1 a {
+  text-decoration: none;
+}
+
+.c2 {
+  color: black;
+  font-size: 1.6rem;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: orange;
+  text-transform: uppercase;
 }
 
 <main
   class="c0"
 >
-  <h1>
-    Vehicles
-  </h1>
+  <header
+    class="c1"
+  >
+    <a
+      href="/"
+      title="Home"
+    >
+      <img
+        alt="Vehicle finder brand"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="50"
+        src="/_next/image?url=%2Fassets%2Fimages%2Flogo.jpg&w=256&q=75"
+        srcset="/_next/image?url=%2Fassets%2Fimages%2Flogo.jpg&w=96&q=75 1x, /_next/image?url=%2Fassets%2Fimages%2Flogo.jpg&w=256&q=75 2x"
+        style="color: transparent;"
+        width="80"
+      />
+      <h1
+        class="c2"
+      >
+        Vehicle finder
+      </h1>
+    </a>
+  </header>
 </main>
 `;

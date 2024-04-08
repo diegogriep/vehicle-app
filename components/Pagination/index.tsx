@@ -10,6 +10,7 @@ import SelectField from '../SelectField'
 import { useVehicles } from '@/hooks/use-vehicles'
 
 import * as S from './styles'
+import { FormEvent } from 'react'
 
 export type PaginationProps = {
   total: number
@@ -22,11 +23,13 @@ const pageItems = [
 ]
 
 const Pagination = () => {
-  const { setLimitAPI, setCurrentPageAPI, total } = useVehicles()
+  const { setLimitAPI, setCurrentPageAPI, total, limitAPI } = useVehicles()
 
   const { setLimit, setPage, pages, isCurrentPage } = usePagination({ total })
 
-  const onChange = (value: number) => {
+  const onChange = (value: number | FormEvent | string) => {
+    setCurrentPageAPI(1)
+    setPage(1)
     setLimit(+value)
     setLimitAPI(+value)
   }
@@ -39,6 +42,7 @@ const Pagination = () => {
   return (
     <S.Wrapper>
       <SelectField
+        initialValue={limitAPI}
         labelFor="vehiclesPerPage"
         name="perPage"
         items={pageItems}
@@ -55,7 +59,7 @@ const Pagination = () => {
           }
 
           return (
-            <S.ListItem key={page} current={isCurrentPage(page)}>
+            <S.ListItem key={page} $current={isCurrentPage(page)}>
               <Link href={'#'} onClick={() => handlePagination(page)}>
                 {page}
               </Link>

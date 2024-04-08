@@ -1,4 +1,4 @@
-import { VehiclesProps } from "@/app/api/route"
+import { VehiclesProps } from '@/app/api/route'
 
 export type FilterByProps = {
   make?: string
@@ -17,12 +17,12 @@ const listItems = (
 ): VehiclesProps => {
   const result: VehiclesProps = []
   const totalPage = Math.ceil(items.length / limitItems)
-  let count = (pageActual * limitItems) - limitItems
+  let count = pageActual * limitItems - limitItems
   const delimiter = count + limitItems
 
-  if(pageActual <= totalPage) {
-    for(let i = count; i < delimiter; i++) {
-      if(items[i]) {
+  if (pageActual <= totalPage) {
+    for (let i = count; i < delimiter; i++) {
+      if (items[i]) {
         result.push(items[i])
       }
 
@@ -38,35 +38,41 @@ const getVehicles = async (
   filterBy: FilterByProps,
   sortBy?: SortValues,
   limit = 10,
-  current = 1): Promise<VehiclesProps> => {
+  current = 1
+): Promise<VehiclesProps> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, { signal })
   let vehicles: VehiclesProps = await response.json()
 
   const { make, model, favorite, startBidRange, endBidRange } = filterBy
 
   if (make) {
-    vehicles = vehicles.filter(vehicle => vehicle.make === make)
+    vehicles = vehicles.filter((vehicle) => vehicle.make === make)
   }
 
   if (model) {
-    vehicles = vehicles.filter(vehicle => vehicle.model === model)
+    vehicles = vehicles.filter((vehicle) => vehicle.model === model)
   }
 
   if (favorite !== null) {
-    vehicles = vehicles.filter(vehicle => vehicle.favourite === favorite)
+    vehicles = vehicles.filter((vehicle) => vehicle.favourite === favorite)
   }
 
   if (startBidRange || endBidRange) {
-    vehicles = vehicles.filter(vehicle => vehicle.startingBid > startBidRange! && vehicle.startingBid < endBidRange!)
+    vehicles = vehicles.filter(
+      (vehicle) =>
+        vehicle.startingBid > startBidRange! &&
+        vehicle.startingBid < endBidRange!
+    )
   }
 
   if (sortBy) {
-    vehicles.sort((a, b) => sortBy === 'make' || sortBy === 'auctionDateTime' ?
-    a[sortBy].localeCompare(b[sortBy]) :
-    a[sortBy] - b[sortBy])
+    vehicles.sort((a, b) =>
+      sortBy === 'make' || sortBy === 'auctionDateTime'
+        ? a[sortBy].localeCompare(b[sortBy])
+        : a[sortBy] - b[sortBy]
+    )
   }
 
-  // const position = current + limit
   const total = vehicles.length
   const result = listItems(vehicles, current, limit)
 

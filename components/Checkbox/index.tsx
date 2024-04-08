@@ -4,6 +4,7 @@ export type CheckBoxProps = {
   onCheck?: (status: boolean) => void
   isChecked?: boolean
   label: string
+  updatedValue?: string | number
   labelFor: string
   value?: string | ReadonlyArray<string> | number
 } & InputHTMLAttributes<HTMLInputElement>
@@ -11,6 +12,7 @@ export type CheckBoxProps = {
 const Checkbox = ({
   onCheck,
   isChecked = false,
+  updatedValue = '',
   label,
   labelFor,
   value,
@@ -29,11 +31,12 @@ const Checkbox = ({
 
   return (
     <S.Wrapper>
+      {updatedValue}
       <S.Input
         id={labelFor}
         type="checkbox"
         onChange={onChange}
-        checked={checked}
+        checked={typeof updatedValue === 'object' ? false : checked}
         value={value}
         {...props}
       />

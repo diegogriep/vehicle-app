@@ -6,6 +6,7 @@ export type TextFieldProps = {
   onInputChange?: (value: string) => void
   label?: string
   initialValue?: string
+  updatedValue?: string | number
   disabled?: boolean
   error?: string
 } & InputHTMLAttributes<HTMLInputElement> &
@@ -15,6 +16,7 @@ const TextField = ({
   label,
   name,
   initialValue = '',
+  updatedValue = '',
   disabled = false,
   onInputChange,
   ...props
@@ -39,7 +41,7 @@ const TextField = ({
           <S.Input
             type="text"
             onChange={onChange}
-            value={value}
+            value={typeof updatedValue === 'object' ? '' : value}
             disabled={disabled}
             name={name}
             {...(label ? { id: name } : {})}
