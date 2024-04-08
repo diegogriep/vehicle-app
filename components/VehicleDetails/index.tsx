@@ -3,13 +3,11 @@
 import Image from 'next/image'
 import * as S from './styles'
 
-import {
-  useVehicleDetails,
-  UseVehicleDetailsProps
-} from '@/hooks/use-vehicle-details'
+import { useVehicleDetails } from '@/hooks/use-vehicle-details'
 import patchVehicle from '@/utils/patchVehicle'
 import countdown from '@/utils/countdown'
 import Link from 'next/link'
+import { UseVehicleDetailsProps } from '@/types/types'
 
 const VehicleDetails = ({
   make,

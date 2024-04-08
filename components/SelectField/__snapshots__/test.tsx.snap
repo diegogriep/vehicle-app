@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectField /> should render the combobox 1`] = `
+.c0 {
+  background-color: #fff;
+  border: 0.1rem solid #333;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.2rem 0.8rem;
+}
+
+.c0:focus-within {
+  border-color: rgba(142, 216, 248, 0.5);
+}
+
+.c1 {
+  border-radius: 0.4rem;
+  color: #666;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+
+<div
+  class=""
+>
+  <div
+    class="c0"
+  >
+    <select
+      class="c1"
+      id=""
+    >
+      <option
+        value=""
+      >
+        Select
+      </option>
+      <option
+        value="BMW"
+      >
+        BMW
+      </option>
+      <option
+        value="VW"
+      >
+        VW
+      </option>
+      <option
+        value="Ford"
+      >
+        Ford
+      </option>
+    </select>
+  </div>
+</div>
+`;

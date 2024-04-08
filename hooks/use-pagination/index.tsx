@@ -1,8 +1,5 @@
-import { PaginationProps } from '@/components/Pagination'
+import { ELLIPSIS_START, ELLIPSIS_END, PaginationProps } from '@/types/types'
 import { useState } from 'react'
-
-export const ELLIPSIS_START = -10
-export const ELLIPSIS_END = -20
 
 const listNumberPages = (page: number, totalPages: number) => {
   const current = Math.min(page, totalPages)

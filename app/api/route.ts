@@ -11,7 +11,7 @@ import fsPromises from 'fs/promises'
 
 import dataset from './vehicles_dataset.json'
 import { NextRequest, NextResponse } from 'next/server'
-import { UseVehicleDetailsProps } from '@/hooks/use-vehicle-details'
+import { UseVehicleDetailsProps } from '@/types/types'
 
 export type VehiclesProps = typeof dataset
 export type VehiclesItemProps = (typeof dataset)[number]

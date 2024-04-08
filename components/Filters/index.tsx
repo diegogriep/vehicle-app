@@ -10,6 +10,7 @@ import Checkbox from '../Checkbox'
 
 import * as S from './styles'
 import { useDebounce } from 'use-debounce'
+import { sortItems } from '@/types/types'
 
 const Filters = () => {
   const { makeItems } = useMakes()
@@ -46,13 +47,6 @@ const Filters = () => {
   useEffect(() => {
     filterBy(debouncedValues)
   }, [filterBy, debouncedValues])
-
-  const sortItems = [
-    { label: 'Make', value: 'make' },
-    { label: 'Starting Bid', value: 'startingBid' },
-    { label: 'Milage', value: 'mileage' },
-    { label: 'Auction Date', value: 'auctionDateTime' }
-  ]
 
   return (
     <S.Wrapper>

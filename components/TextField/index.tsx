@@ -9,6 +9,7 @@ export type TextFieldProps = {
   updatedValue?: string | number
   disabled?: boolean
   error?: string
+  id?: string
 } & InputHTMLAttributes<HTMLInputElement> &
   TextareaHTMLAttributes<HTMLTextAreaElement>
 

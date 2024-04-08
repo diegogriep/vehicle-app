@@ -1,14 +1,5 @@
 import { VehiclesProps } from '@/app/api/route'
-
-export type FilterByProps = {
-  make?: string
-  model?: string
-  startBidRange?: number
-  endBidRange?: number
-  favorite?: boolean | null
-}
-
-export type SortValues = 'make' | 'startingBid' | 'mileage' | 'auctionDateTime'
+import { FilterByProps, SortValues } from '@/types/types'
 
 const listItems = (
   items: VehiclesProps,

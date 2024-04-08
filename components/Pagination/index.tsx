@@ -1,26 +1,13 @@
 'use client'
 
-import {
-  ELLIPSIS_END,
-  ELLIPSIS_START,
-  usePagination
-} from '@/hooks/use-pagination'
+import { usePagination } from '@/hooks/use-pagination'
 import Link from 'next/link'
 import SelectField from '../SelectField'
 import { useVehicles } from '@/hooks/use-vehicles'
 
 import * as S from './styles'
 import { FormEvent } from 'react'
-
-export type PaginationProps = {
-  total: number
-}
-
-const pageItems = [
-  { label: '10', value: '10' },
-  { label: '25', value: '25' },
-  { label: '50', value: '50' }
-]
+import { ELLIPSIS_START, ELLIPSIS_END, pageItems } from '@/types/types'
 
 const Pagination = () => {
   const { setLimitAPI, setCurrentPageAPI, total, limitAPI } = useVehicles()

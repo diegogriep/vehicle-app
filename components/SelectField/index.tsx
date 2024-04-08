@@ -1,21 +1,6 @@
-import { SelectHTMLAttributes, useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
-import { SortValues } from '@/utils/getVehicles'
-
-export type SelectOptionProps = {
-  label: string
-  value: string
-}
-
-export type SelectFieldProps = {
-  items: SelectOptionProps[]
-  initialValue?: string | number
-  updatedValue?: string | number
-  label?: string
-  labelFor?: string
-  placeholder?: string
-  onInput?: (value: string | SortValues) => void
-} & SelectHTMLAttributes<HTMLSelectElement>
+import { SelectFieldProps } from '@/types/types'
 
 const SelectField = ({
   items,

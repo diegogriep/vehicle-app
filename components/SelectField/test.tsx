@@ -18,12 +18,10 @@ const items = [
 ]
 
 describe('<SelectField />', () => {
-  it('should render the heading', () => {
+  it('should render the combobox', () => {
     const { container } = render(<SelectField items={items} />)
 
-    expect(
-      screen.getByRole('heading', { name: /SelectField/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('combobox')).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })

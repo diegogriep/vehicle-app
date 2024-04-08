@@ -1,32 +1,13 @@
 import { VehiclesProps } from '@/app/api/route'
-import getVehicles, { FilterByProps, SortValues } from '@/utils/getVehicles'
+import {
+  VehiclesContextData,
+  VehiclesContextDefaultValues,
+  FilterByProps,
+  MAX_VALUE,
+  SortValues
+} from '@/types/types'
+import getVehicles from '@/utils/getVehicles'
 import { useContext, createContext, useState, useEffect } from 'react'
-
-export const MAX_VALUE = 100000000
-
-export type VehiclesContextData = {
-  filteredItems: FilterByProps
-  items: VehiclesProps
-  filterBy: (filters: FilterByProps) => void
-  sortBy: (property: SortValues) => void
-  total: number
-  setLimitAPI: (value: number) => void
-  setCurrentPageAPI: (value: number) => void
-  limitAPI: number
-  loading: boolean
-}
-
-export const VehiclesContextDefaultValues = {
-  filteredItems: {},
-  items: [],
-  filterBy: () => null,
-  sortBy: () => null,
-  total: 0,
-  setLimitAPI: () => null,
-  setCurrentPageAPI: () => null,
-  limitAPI: 0,
-  loading: false
-}
 
 export const VehiclesContext = createContext<VehiclesContextData>(
   VehiclesContextDefaultValues

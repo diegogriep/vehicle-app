@@ -1,13 +1,6 @@
-import { InputHTMLAttributes, useState } from 'react'
+import { useState } from 'react'
 import * as S from './styles'
-export type CheckBoxProps = {
-  onCheck?: (status: boolean) => void
-  isChecked?: boolean
-  label: string
-  updatedValue?: string | number
-  labelFor: string
-  value?: string | ReadonlyArray<string> | number
-} & InputHTMLAttributes<HTMLInputElement>
+import { CheckBoxProps } from '@/types/types'
 
 const Checkbox = ({
   onCheck,
