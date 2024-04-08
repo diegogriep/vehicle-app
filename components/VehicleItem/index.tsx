@@ -7,9 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const VehicleItem = (props: VehiclesItemProps) => {
-  const slug = `${props.make}-${props.model.replace(' ', '')}-${props.year}-${
-    props.mileage
-  }`
+  const slug = `${props.make}--${props.model.replace(' ', '')}--${
+    props.year
+  }--${props.mileage}`
   return (
     <S.Wrapper>
       <Link href={`/vehicle/${slug}`}>

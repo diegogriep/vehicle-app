@@ -44,6 +44,7 @@ export const usePagination = ({ total }: PaginationProps) => {
   const [limit, setLimit] = useState(10)
   const totalPages = Math.ceil(total / limit)
   const pages = listNumberPages(page, totalPages)
+  const isCurrentPage = (n: number) => n === page
 
-  return { setPage, pages, setLimit, limit }
+  return { setPage, pages, setLimit, limit, isCurrentPage }
 }

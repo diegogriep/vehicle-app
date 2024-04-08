@@ -10,7 +10,8 @@ export const Wrapper = styled.div`
   row-gap: 2rem;
 
   ${media.greaterThan('small')`
+    column-gap: 2.7rem;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
   `}
 `

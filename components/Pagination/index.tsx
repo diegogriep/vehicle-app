@@ -24,7 +24,7 @@ const pageItems = [
 const Pagination = () => {
   const { setLimitAPI, setCurrentPageAPI, total } = useVehicles()
 
-  const { setLimit, setPage, pages } = usePagination({ total })
+  const { setLimit, setPage, pages, isCurrentPage } = usePagination({ total })
 
   const onChange = (value: number) => {
     setLimit(+value)
@@ -55,7 +55,7 @@ const Pagination = () => {
           }
 
           return (
-            <S.ListItem key={page}>
+            <S.ListItem key={page} current={isCurrentPage(page)}>
               <Link href={'#'} onClick={() => handlePagination(page)}>
                 {page}
               </Link>

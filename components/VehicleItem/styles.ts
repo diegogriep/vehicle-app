@@ -12,6 +12,10 @@ export const Wrapper = styled.article`
   a {
     color: #333;
     text-decoration: none;
+
+    &:hover {
+      color: green;
+    }
   }
 
   img {
@@ -28,6 +32,8 @@ export const Model = styled.h1`
   font-size: inherit;
   font-weight: bold;
   padding-top: 0.6rem;
+
+  width: 26rem;
 `
 
 export const Details = styled.p`

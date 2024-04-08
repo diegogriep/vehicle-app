@@ -35,6 +35,11 @@ export const Button = styled.button`
   letter-spacing: 0.03rem;
   padding: 1.2rem;
   text-decoration: none;
+
+  &:hover {
+    background-color: #666;
+    color: #fff;
+  }
 `
 
 export const Filters = styled.section`

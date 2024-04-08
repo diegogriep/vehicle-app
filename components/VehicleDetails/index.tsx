@@ -8,6 +8,7 @@ import {
   UseVehicleDetailsProps
 } from '@/hooks/use-vehicle-details'
 import patchVehicle from '@/utils/patchVehicle'
+import countdown from '@/utils/countdown'
 
 const VehicleDetails = ({
   make,
@@ -28,11 +29,16 @@ const VehicleDetails = ({
     console.log(updateVehicle)
   }
 
+  const counter = (datetime: string) => {
+    return countdown(datetime)
+  }
+
   return (
     vehicleData && (
       <S.Wrapper>
         {vehicleData.favourite && <span>favourite</span>}
         <button onClick={updateFavourite}>Update favourite</button>
+        {counter(vehicleData.auctionDateTime)}
         <Image
           alt={`A placeholder image of a car make ${vehicleData.make} model ${vehicleData.model}`}
           src={'/assets/images/car-placeholder.jpeg'}

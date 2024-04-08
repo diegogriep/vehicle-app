@@ -4,6 +4,7 @@ export const Wrapper = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-top: 2rem;
   text-align: center;
 
   a {

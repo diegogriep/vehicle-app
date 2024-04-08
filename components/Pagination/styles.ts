@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.section`
   display: flex;
@@ -30,4 +30,16 @@ export const List = styled.ul`
     }
   }
 `
-export const ListItem = styled.li``
+type ListProps = {
+  current: boolean
+}
+
+export const ListItem = styled.li<ListProps>`
+  ${({ current }) => css`
+    background-color: ${current ? '#666' : '#f0f0f0'};
+
+    a {
+      color: #fff;
+    }
+  `}
+`

@@ -13,6 +13,7 @@ export const Header = () => {
           src={'/assets/images/logo.jpg'}
           width={80}
           height={50}
+          priority
         />
 
         <S.Title>Vehicle finder</S.Title>
