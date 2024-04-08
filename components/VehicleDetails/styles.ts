@@ -1,18 +1,20 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
 
-export const Wrapper = styled.div`
-  background-color: #ccc;
+export const Wrapper = styled.article`
+  border-radius: 0.4rem;
   color: black;
   font-size: 1.6rem;
   margin-top: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
+  position: relative;
 
   img {
+    height: auto;
     width: 100%;
 
-    ${media.greaterThan('small')`
-      width: auto;
+    ${media.greaterThan('medium')`
+      width: revert-layer;
     `}
   }
 `
@@ -21,8 +23,11 @@ export const Model = styled.h1`
   font-size: inherit;
   font-weight: bold;
   padding-top: 0.6rem;
-
   width: 26rem;
+
+  ${media.greaterThan('small')`
+    font-size: 2rem;
+  `}
 `
 
 export const Details = styled.p`
@@ -48,7 +53,7 @@ export const Favourite = styled.span`
   font-size: 2rem;
   left: 2rem;
   position: absolute;
-  top: 2rem;
+  top: 1.7rem;
   animation: 1.5s ease 0s infinite beat;
 
   @keyframes beat {
@@ -62,4 +67,47 @@ export const Favourite = styled.span`
       transform: scale(0.92, 0.95);
     }
   }
+`
+
+export const Button = styled.button`
+  align-self: end;
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.03rem;
+  padding: 1.2rem;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #666;
+    color: #fff;
+  }
+`
+
+export const Text = styled.p`
+  padding: 1rem 0;
+  text-align: center;
+`
+
+export const DetailsSection = styled.section`
+  padding-top: 1.5rem;
+`
+
+export const Subtitle = styled.h5`
+  padding: 1rem 0;
+`
+
+export const Container = styled.div`
+  ${media.greaterThan('medium')`
+    display: flex;
+  `}
+`
+export const TextContainer = styled.div`
+  ${media.greaterThan('medium')`
+    display: flex;
+    flex-direction: column;
+  `}
 `
