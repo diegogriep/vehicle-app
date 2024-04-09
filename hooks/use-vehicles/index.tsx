@@ -7,7 +7,14 @@ import {
   SortValues
 } from '@/types/types'
 import getVehicles from '@/utils/getVehicles'
-import { useContext, createContext, useState, useEffect } from 'react'
+import { listItems, sortItems } from '@/utils/utilsVehicles'
+import {
+  useContext,
+  createContext,
+  useState,
+  useEffect,
+  useReducer
+} from 'react'
 
 export const VehiclesContext = createContext<VehiclesContextData>(
   VehiclesContextDefaultValues
@@ -18,8 +25,26 @@ export type VehiclesProviderProps = {
 }
 
 const VehiclesProvider = ({ children }: VehiclesProviderProps) => {
-  const [loading, setLoading] = useState(true)
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'request':
+        return { loading: true }
+      case 'success':
+        return { loading: false, data: action.results }
+      case 'failure':
+        return { loading: false, error: action.error }
+    }
+  }
+
+  const [{ data, loading, error }, dispatch] = useReducer(reducer, {
+    loading: true
+  })
+
+  // const [loading, setLoading] = useState(true)
   const [vehiclesData, setVehiclesData] = useState<VehiclesProps>([])
+  const [parsedVehiclesData, setParsedVehiclesData] = useState<VehiclesProps>(
+    []
+  )
   const [filteredData, setFilteredData] = useState<FilterByProps>({
     make: '',
     model: '',
@@ -36,16 +61,20 @@ const VehiclesProvider = ({ children }: VehiclesProviderProps) => {
     const signal = controller.signal
 
     async function fetchData() {
+      dispatch({ type: 'request' })
+      console.log(loading)
       const { result, total } = await getVehicles(
-        signal,
-        filteredData,
-        sortedData,
-        limitAPI,
-        currentPageAPI
+        signal
+        // filteredData,
+        // sortedData,
+        // limitAPI,
+        // currentPageAPI
       )
       setVehiclesData(result)
       setTotal(total)
-      setLoading(false)
+      // setLoading(false)
+      dispatch({ type: 'success', results: result })
+      console.log(loading)
     }
 
     fetchData()
@@ -53,7 +82,22 @@ const VehiclesProvider = ({ children }: VehiclesProviderProps) => {
     return () => {
       controller.abort()
     }
-  }, [currentPageAPI, filteredData, limitAPI, sortedData])
+  }, [])
+
+  useEffect(() => {
+    const paginatedResult = listItems(vehiclesData, currentPageAPI, limitAPI)
+    setParsedVehiclesData(paginatedResult)
+  }, [currentPageAPI, limitAPI, vehiclesData])
+
+  useEffect(() => {
+    const sortedResult = sortItems(vehiclesData, sortedData)
+    setParsedVehiclesData(sortedResult)
+  }, [sortedData, vehiclesData])
+
+  useEffect(() => {
+    const result = listItems(vehiclesData, currentPageAPI, limitAPI)
+    setParsedVehiclesData(result)
+  }, [currentPageAPI, limitAPI, vehiclesData])
 
   const filterBy = (filters: FilterByProps) => {
     setFilteredData(filters)
@@ -66,7 +110,7 @@ const VehiclesProvider = ({ children }: VehiclesProviderProps) => {
   return (
     <VehiclesContext.Provider
       value={{
-        items: vehiclesData,
+        items: parsedVehiclesData,
         filteredItems: filteredData,
         filterBy,
         sortBy,
