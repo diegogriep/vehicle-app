@@ -6,7 +6,9 @@ import {
   MAX_VALUE,
   SortValues
 } from '@/types/types'
-import getVehicles from '@/utils/getVehicles'
+
+import { getStorageItem } from '@/utils/localStorage'
+import { filterItems, listItems, sortItems } from '@/utils/utilsVehicles'
 import { useContext, createContext, useState, useEffect } from 'react'
 
 export const VehiclesContext = createContext<VehiclesContextData>(
@@ -32,27 +34,15 @@ const VehiclesProvider = ({ children }: VehiclesProviderProps) => {
   const [currentPageAPI, setCurrentPageAPI] = useState(1)
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
+    const database = getStorageItem()
+    let vehicles = filterItems(database, filteredData)
+    vehicles = sortItems(vehicles, sortedData)
+    setTotal(vehicles.length)
 
-    async function fetchData() {
-      const { result, total } = await getVehicles(
-        signal,
-        filteredData,
-        sortedData,
-        limitAPI,
-        currentPageAPI
-      )
-      setVehiclesData(result)
-      setTotal(total)
-      setLoading(false)
-    }
+    vehicles = listItems(vehicles, currentPageAPI, limitAPI)
 
-    fetchData()
-
-    return () => {
-      controller.abort()
-    }
+    setVehiclesData(vehicles)
+    setLoading(false)
   }, [currentPageAPI, filteredData, limitAPI, sortedData])
 
   const filterBy = (filters: FilterByProps) => {

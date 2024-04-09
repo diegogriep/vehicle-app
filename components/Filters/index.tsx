@@ -11,10 +11,12 @@ import Checkbox from '../Checkbox'
 import * as S from './styles'
 import { useDebounce } from 'use-debounce'
 import { sortItems } from '@/types/types'
+import { usePagination } from '@/hooks/use-pagination'
 
 const Filters = () => {
   const { makeItems } = useMakes()
-  const { filterBy, sortBy } = useVehicles()
+  const { filterBy, sortBy, setCurrentPageAPI, total } = useVehicles()
+  const { setPage } = usePagination({ total })
 
   const [updateValues, setUpdateValues] = useState({
     make: '',
@@ -45,8 +47,10 @@ const Filters = () => {
     )
 
   useEffect(() => {
+    setCurrentPageAPI(1)
+    setPage(1)
     filterBy(debouncedValues)
-  }, [filterBy, debouncedValues])
+  }, [filterBy, debouncedValues, setCurrentPageAPI, setPage])
 
   return (
     <S.Wrapper>

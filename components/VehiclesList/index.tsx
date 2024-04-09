@@ -15,7 +15,7 @@ const VehicleList = () => {
         Array.from({ length: 10 }).map((_, index) => (
           <VehicleItemSkeleton key={index} />
         ))
-      ) : items.length ? (
+      ) : items?.length ? (
         items.map((vehicle, index) => <VehicleItem key={index} {...vehicle} />)
       ) : (
         <Empty />

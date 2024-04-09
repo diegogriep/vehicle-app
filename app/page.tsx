@@ -1,17 +1,18 @@
-import Filters from '@/components/Filters'
-import Pagination from '@/components/Pagination'
-import VehicleList from '@/components/VehiclesList'
-import { Suspense } from 'react'
-import Loading from './loading'
+import getVehicles from '@/utils/getVehicles'
+import Wrapper from '@/components/Wrapper'
 
-export default function Home() {
-  return (
-    <>
-      <Filters />
-      <Suspense fallback={<Loading />}>
-        <VehicleList />
-      </Suspense>
-      <Pagination />
-    </>
-  )
+async function getData() {
+  const res = await getVehicles()
+
+  if (!res) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res
+}
+
+export default async function Home() {
+  const data = await getData()
+
+  return <Wrapper vehicles={data} />
 }
